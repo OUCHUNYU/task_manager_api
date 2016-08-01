@@ -43,7 +43,8 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    Project.find(params[:id]).destroy
+    project = Project.find_by(id: params[:id])
+    project.destroy if project
   end
 
   private

@@ -68,7 +68,18 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
                                        }
     return_object = JSON.parse(response.body)
     assert_equal "project not found", return_object['message']
+  end
 
+  test 'delete when project found' do
+    assert_difference "Project.count", -1 do
+      delete "/projects/#{@project.id}"
+    end
+  end
+
+  test 'will not delete when project not found' do
+    assert_difference "Project.count", 0 do
+      delete "/projects/sadfhkjs"
+    end
   end
 
 end
