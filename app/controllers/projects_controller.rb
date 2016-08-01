@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
       new_project = user.projects.new(reconstructed_params)
       if new_project.valid?
         user.save
-        render json: { user_object: user.projects }
+        render json: user.projects
       else
         render json: { message: "something went wrong" }
       end
@@ -20,20 +20,20 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    project = Project.find(params[:id])
+    project = Project.find_by(id: params[:id])
     if project
-      render json: { project_object: project.tasks }
+      render json: project.tasks
     else
       render json: { message: "project not found" }
     end
   end
 
   def update
-    project = Project.find(params[:id])
+    project = Project.find_by(id: params[:id])
     if project
       if project.update_attributes(update_action_params)
         project.save
-        render json: { project_object: project }
+        render json: project.user.projects
       else
         render json: { message: "something went wrong" }
       end
@@ -43,7 +43,8 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    Project.find(params[:id]).destroy
+    project = Project.find_by(id: params[:id])
+    project.destroy if project
   end
 
   private
