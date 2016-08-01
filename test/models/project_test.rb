@@ -10,6 +10,10 @@ class ProjectTest < ActiveSupport::TestCase
     assert_equal @user, @project.user
   end
 
+  test 'a project has many tasks' do
+    assert @project.tasks
+  end
+
   test 'a project has a name' do
     assert_equal 'test project', @project.name
   end
