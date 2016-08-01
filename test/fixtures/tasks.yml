@@ -7,3 +7,7 @@
 task1:
   title: "test task"
   project: project1
+
+task2:
+  title: "test task 2"
+  project: project1
