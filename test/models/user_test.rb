@@ -6,6 +6,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'a user has many projects' do
-    assert_not @user.projects.one?
+    assert @user.projects
   end
 end
