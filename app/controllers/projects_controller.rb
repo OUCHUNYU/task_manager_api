@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
       new_project = user.projects.new(reconstructed_params)
       if new_project.valid?
         user.save
-        render json: { user_object: user.projects }
+        render json: user.projects
       else
         render json: { message: "something went wrong" }
       end
