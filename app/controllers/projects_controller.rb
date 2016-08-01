@@ -29,11 +29,11 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    project = Project.find(params[:id])
+    project = Project.find_by(id: params[:id])
     if project
       if project.update_attributes(update_action_params)
         project.save
-        render json: { project_object: project }
+        render json: project.user.projects
       else
         render json: { message: "something went wrong" }
       end
