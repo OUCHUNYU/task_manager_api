@@ -32,7 +32,8 @@ class ProjectsController < ApplicationController
   def show
     project = Project.find_by(id: params[:id])
     if project
-      render json: project.tasks
+      task_groups = Project.render_tasks_in_order(project)
+      render json: task_groups
     else
       render json: { message: "project not found" }
     end
