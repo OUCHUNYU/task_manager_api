@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(version: 20160731233515) do
 
   create_table "users", force: :cascade do |t|
     t.string   "hash_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "position_order"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end
