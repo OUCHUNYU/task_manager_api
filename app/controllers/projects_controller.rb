@@ -10,7 +10,17 @@ class ProjectsController < ApplicationController
       new_project = user.projects.new(reconstructed_params)
       if new_project.valid?
         user.save
-        render json: user.projects
+        if user.position_order
+          user.position_order += new_project.id.to_s
+          # new_order = user.position_order + new_project.id
+          # user.update_attributes(position_order: new_order)
+        else
+          user.position_order = new_project.id.to_s
+        end
+        user.save
+
+        project_arr = User.render_projects_in_order(user)
+        render json: project_arr
       else
         render json: { message: "something went wrong" }
       end
