@@ -5,14 +5,14 @@ class User < ApplicationRecord
     project_arr = user.projects
     if user.position_order
       position_arr = user.position_order.split('')
-      something = position_arr.map do |i|
+      ordered_projects = position_arr.map do |i|
         project_arr.find do |x|
           if x.id == i.to_i
             x
           end
         end
       end
-      something
+      ordered_projects
     else
       return project_arr
     end
