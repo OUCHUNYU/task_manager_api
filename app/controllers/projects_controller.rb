@@ -18,7 +18,6 @@ class ProjectsController < ApplicationController
           user.position_order = new_project.id.to_s
         end
         user.save
-
         project_arr = User.render_projects_in_order(user)
         render json: project_arr
       else
