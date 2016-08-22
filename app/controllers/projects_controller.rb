@@ -11,11 +11,11 @@ class ProjectsController < ApplicationController
       if new_project.valid?
         user.save
         if user.position_order
-          user.position_order += new_project.id.to_s
+          user.position_order += new_project.id.to_s + ","
           # new_order = user.position_order + new_project.id
           # user.update_attributes(position_order: new_order)
         else
-          user.position_order = new_project.id.to_s
+          user.position_order = new_project.id.to_s + ","
         end
         user.save
         project_arr = User.render_projects_in_order(user)
@@ -31,7 +31,8 @@ class ProjectsController < ApplicationController
   def show
     project = Project.find_by(id: params[:id])
     if project
-      render json: project.tasks
+      task_groups = Project.render_tasks_in_order(project)
+      render json: task_groups
     else
       render json: { message: "project not found" }
     end
