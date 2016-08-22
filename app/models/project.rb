@@ -11,7 +11,7 @@ class Project < ApplicationRecord
       done: []
     }
     if project.open_task_order
-      open_task_position_arr = project.open_task_order.split('')
+      open_task_position_arr = project.open_task_order.split(',')
       ordered_open_tasks = open_task_position_arr.map do |i|
         taskArr.find do |x|
           if x.id == i.to_i
@@ -23,7 +23,9 @@ class Project < ApplicationRecord
     end
 
     if project.in_progress_task_order
-      in_progress_task_position_arr = project.in_progress_task_order.split('')
+      in_progress_task_position_arr = project.in_progress_task_order.split(',')
+      puts "#" * 100
+      puts in_progress_task_position_arr
       ordered_in_progress_tasks = in_progress_task_position_arr.map do |i|
         taskArr.find do |x|
           if x.id == i.to_i
@@ -31,11 +33,13 @@ class Project < ApplicationRecord
           end
         end
       end
+      puts "#" * 100
+      puts ordered_in_progress_tasks
       result[:in_progress] = ordered_in_progress_tasks
     end
 
     if project.done_task_order
-      done_task_position_arr = project.done_task_order.split('')
+      done_task_position_arr = project.done_task_order.split(',')
       ordered_done_tasks = done_task_position_arr.map do |i|
         taskArr.find do |x|
           if x.id == i.to_i
