@@ -11,11 +11,11 @@ class ProjectsController < ApplicationController
       if new_project.valid?
         user.save
         if user.position_order
-          user.position_order += new_project.id.to_s
+          user.position_order += new_project.id.to_s + ","
           # new_order = user.position_order + new_project.id
           # user.update_attributes(position_order: new_order)
         else
-          user.position_order = new_project.id.to_s
+          user.position_order = new_project.id.to_s + ","
         end
         user.save
 
