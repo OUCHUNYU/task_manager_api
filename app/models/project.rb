@@ -49,4 +49,14 @@ class Project < ApplicationRecord
     return result
 
   end
+
+  def self.update_task_list_order(project, list_id, order_string)
+    if list_id == 1
+      project.update_attributes(open_task_order: order_string)
+    elsif list_id == 2
+      project.update_attributes(in_progress_task_order: order_string)
+    elsif list_id == 3
+      project.update_attributes(done_task_order: order_string)
+    end
+  end
 end

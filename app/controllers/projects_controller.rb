@@ -57,6 +57,17 @@ class ProjectsController < ApplicationController
     project.destroy if project
   end
 
+  def update_task_order
+    project = Project.find_by(id: params[:project_id])
+    if project && params[:list_id] && params[:order_string]
+      Project.update_task_list_order(project, params[:list_id], params[:order_string])
+      project_arr = Project.render_tasks_in_order(project)
+      render json: project_arr
+    else
+      render json: { message: "something went wrong" }
+    end
+  end
+
   private
 
   def create_action_params
