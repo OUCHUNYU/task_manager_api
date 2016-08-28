@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
+  has_many :tasks, dependent: :destroy
   belongs_to :user
-  has_many :tasks
-
+  
 
   def self.render_tasks_in_order(project)
     taskArr = project.tasks

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :projects
+  has_many :projects, dependent: :destroy
 
   def self.render_projects_in_order(user)
     project_arr = user.projects
