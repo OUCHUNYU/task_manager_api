@@ -79,7 +79,16 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: todo_api_production
-  username: todo_api
-  password: <%= ENV['TODO_API_DATABASE_PASSWORD'] %>
+    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    database: <%= ENV['RDS_DB_NAME'] %>
+    username: <%= ENV['RDS_USERNAME'] %>
+    password: <%= ENV['RDS_PASSWORD'] %>
+    host: <%= ENV['RDS_HOSTNAME'] %>
+    port: <%= ENV['RDS_PORT'] %>
+# production:
+#   <<: *default
+#   database: todo_api_production
+#   username: todo_api
+#   password: <%= ENV['TODO_API_DATABASE_PASSWORD'] %>
