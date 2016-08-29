@@ -53,8 +53,20 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    project = Project.find_by(id: params[:id])
-    project.destroy if project
+    user = User.find_by(hash_id: params[:hash_id])
+    if user
+      project = user.projects.find(params[:id])
+      if project
+        user.update_attributes(position_order: params[:order_string])
+        project.destroy
+        project_arr = User.render_projects_in_order(user)
+        render json: project_arr
+      else
+        render json: { message: "project not found" }
+      end
+    else
+      render json: { message: "Request denied" }
+    end
   end
 
   def update_task_order
