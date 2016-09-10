@@ -13,7 +13,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'with a inalid hash string should return error message' do
+  test 'with a invalid hash string should return error message' do
     get "/users/fsgfdfgdfsgs"
     error_message = JSON.parse(response.body)
     assert_equal "User not found", error_message['message']

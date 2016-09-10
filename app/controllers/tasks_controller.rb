@@ -43,7 +43,7 @@ class TasksController < ApplicationController
   def show
     task = Task.find_by(id: params[:id])
     if task
-      render json: project.tasks
+      render json: task.project.tasks
     else
       render json: { message: "task not found" }
     end
