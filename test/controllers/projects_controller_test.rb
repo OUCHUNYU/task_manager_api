@@ -8,9 +8,9 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
   test 'a valid project will return all tasks' do
     get "/projects/#{@project.id}"
-    return_object = JSON.parse(response.body)
-    return_object.each do |task|
-      assert_equal @project.id, task["project_id"]
+    puts return_object = JSON.parse(response.body)
+    return_object.each do |project|
+      assert_equal "Array", project.class.to_s
     end
   end
 
@@ -72,7 +72,11 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
   test 'delete when project found' do
     assert_difference "Project.count", -1 do
-      delete "/projects/#{@project.id}"
+      delete "/projects/#{@project.id}", params: {
+                                                    hash_id: @user.hash_id,
+                                                    id: @project.id,
+                                                    position_order: "fsfdfsdfadf"
+                                                 }
     end
   end
 

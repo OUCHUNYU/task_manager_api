@@ -5,4 +5,4 @@
 # below each fixture, per the syntax in the comments below
 #
 chunyu:
-  hash_id: <%= SecureRandom.base64 %>
+  hash_id: <%= SecureRandom.uuid %>
