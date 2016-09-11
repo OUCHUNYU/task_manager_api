@@ -52,9 +52,10 @@ class TasksController < ApplicationController
   def update
     task = Task.find_by(id: params[:id])
     if task
-      if task.update_attributes(update_action_params)
-        task.save
-        render json: task.project.tasks
+      if task.update_attributes(title: update_action_params[:task_title])
+        # task.save
+        puts task.title
+        render json: task
       else
         render json: { message: "something went wrong" }
       end
@@ -75,7 +76,7 @@ class TasksController < ApplicationController
   end
 
   def update_action_params
-    params.permit(:title)
+    params.permit(:task_title)
   end
 
 end
