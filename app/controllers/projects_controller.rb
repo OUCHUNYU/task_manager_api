@@ -87,7 +87,7 @@ class ProjectsController < ApplicationController
   end
 
   def update_action_params
-    params.permit(:name, :description)
+    params.permit(:name, :description, :archive)
   end
 
 end
