@@ -12,9 +12,9 @@ class User < ApplicationRecord
           end
         end
       end
-      ordered_projects
+      ordered_projects.select {|project| project.archive == false}
     else
-      return project_arr
+      return project_arr.select {|project| project.archive == false}
     end
   end
 

@@ -7,6 +7,7 @@ class CreateProjects < ActiveRecord::Migration[5.0]
       t.string :in_progress_task_order
       t.string :done_task_order
       t.integer :user_id
+      t.boolean :archive, default: false
 
       t.timestamps
     end
