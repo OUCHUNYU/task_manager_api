@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20160731233515) do
     t.string   "in_progress_task_order"
     t.string   "done_task_order"
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.boolean  "archive",                default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "tasks", force: :cascade do |t|
