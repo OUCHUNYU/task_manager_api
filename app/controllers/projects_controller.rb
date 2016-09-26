@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
     if project
       if project.update_attributes(update_action_params)
         project.save
-        render json: project.user.projects
+        render json: User.render_projects_in_order(project.user)
       else
         render json: { message: "something went wrong" }
       end
